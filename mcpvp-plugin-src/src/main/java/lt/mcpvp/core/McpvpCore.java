@@ -153,6 +153,14 @@ public class McpvpCore extends JavaPlugin implements Listener {
             }
         }
         for (Player p : Bukkit.getOnlinePlayers()) {
+            if (!boards.containsKey(p.getUniqueId())) {
+                load(p);
+                createBoard(p);
+            }
+            Scoreboard mine = boards.get(p.getUniqueId());
+            if (mine != null && p.getScoreboard() != mine) {
+                p.setScoreboard(mine);
+            }
             update(p);
         }
     }
