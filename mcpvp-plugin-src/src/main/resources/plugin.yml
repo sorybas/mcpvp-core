@@ -1,0 +1,5 @@
+name: McpvpCore
+version: 1.0.0
+main: lt.mcpvp.core.McpvpCore
+api-version: '1.20'
+description: mcpvp.lt pagrindinis pluginas
