@@ -130,8 +130,15 @@ public class McpvpCore extends JavaPlugin implements Listener {
 
     private void createBoard(Player p) {
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
-        Objective obj = board.registerNewObjective("mcpvp", Criteria.DUMMY,
-                MM.deserialize("<green><bold>MCPVP.LT"));
+        Component title;
+        if (!getConfig().getString("pack-url", "").isEmpty()) {
+            // 3D uzrasas is resource pack'o
+            title = Component.text("", net.kyori.adventure.text.format.NamedTextColor.WHITE)
+                    .font(net.kyori.adventure.key.Key.key("mcpvp", "board"));
+        } else {
+            title = MM.deserialize("<green><bold>MCPVP.LT");
+        }
+        Objective obj = board.registerNewObjective("mcpvp", Criteria.DUMMY, title);
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 
         for (int i = 0; i < LINES; i++) {
